@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-website-deployment
+spec:
+  replicas: 1  # The number of pods you want to run (adjust based on your needs)
+  selector:
+    matchLabels:
+      app: php-website
+  template:
+    metadata:
+      labels:
+        app: php-website
+    spec:
+      containers:
+        - name: php-website
+          image: php:8.1-apache  # Or use your custom image from Docker Hub or a private registry
+          ports:
+            - containerPort: 81  # The port your Apache container is exposing (from Dockerfile)
+          volumeMounts:
+            - name: php-website-volume
+              mountPath: /var/www/html  # Mount your code directory
+      volumes:
+        - name: php-website-volume
+          emptyDir: {}  # Can be replaced with persistent storage if needed
