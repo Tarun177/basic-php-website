@@ -17,7 +17,7 @@ RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
 # Expose the port Apache will listen on
-EXPOSE 81
+EXPOSE 85
 
 # Enable Apache mod_rewrite (if required for your project)
 RUN a2enmod rewrite
